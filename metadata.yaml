@@ -1,4 +1,3 @@
-
 # Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,5 +15,5 @@
 homepage: "https://www.rokt.com"
 documentation: "https://docs.rokt.com/docs/developers/integration-guides/third-party-integrations/google-tag-manager/google-tag-template"
 versions:
-  - sha: 5f02a788b90ae804f86b04aa24af8937e567874a
+  - sha: c91f0a3d6675aded715ff339b5199d1f7d9a9194
     changeNotes: Initial release.
