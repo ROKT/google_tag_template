@@ -14,7 +14,7 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Rokt Tag Integration",
-  "categories": ["ADVERTISING", "ATTRIBUTION", "CONVERSIONS", "MARKETING", "SALES"],
+  "categories": ["ADVERTISING", "ATTRIBUTION", "CONVERSIONS"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "Rokt",
@@ -65,24 +65,18 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "TEXT",
         "name": "email",
-        "displayName": "Email",
+        "displayName": "Raw email",
         "simpleValueType": true
       },
       {
         "type": "TEXT",
         "name": "emailsha256",
-        "displayName": "Email (SHA-256)",
+        "displayName": "Hashed email (SHA-256)",
         "simpleValueType": true
       },
       {
         "type": "TEXT",
-        "name": "emailmd5",
-        "displayName": "Email (md5)",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "Conversion Tracking Id",
+        "name": "passbackconversiontrackingid",
         "displayName": "Rokt Tracking ID",
         "simpleValueType": true
       },
@@ -266,9 +260,21 @@ ___TEMPLATE_PARAMETERS___
     "groupStyle": "ZIPPY_CLOSED",
     "subParams": [
       {
+        "type": "TEXT",
+        "name": "pageIdentifier",
+        "displayName": "Page Identifier",
+        "simpleValueType": true
+      },
+      {
         "type": "CHECKBOX",
         "name": "roktEmailPositiveEngagement",
         "checkboxText": "Send raw email only on positive engagement",
+        "simpleValueType": true
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "hashRawEmail",
+        "checkboxText": "Hash raw email attribute (SHA-256)",
         "simpleValueType": true
       }
     ]
@@ -286,49 +292,71 @@ const Object = require('Object');
 const makeString = require('makeString');
 const log = require('logToConsole');
 
-
-// A) load the launcher
-
-injectScript('https://apps.rokt.com/integrations/launcher.js', data.gtmOnSuccess,data.gtmOnFailure,'rokt-wrapper');
-
+// A) load the Rokt launcher
+injectScript(
+  'https://apps.rokt.com/integrations/launcher.js',
+  data.gtmOnSuccess,
+  data.gtmOnFailure,
+  'rokt-wrapper'
+);
 
 // B - Initialize config
 let cfg = {};
-cfg.sandbox =   data.roktSandbox === undefined ? false : data.roktSandbox;
-cfg.emailPositiveEngagement = data.roktEmailPositiveEngagement === undefined ? false : data.roktEmailPositiveEngagement;
+cfg.sandbox = data.roktSandbox === undefined ? false : data.roktSandbox;
+cfg.emailPositiveEngagement =
+  data.roktEmailPositiveEngagement === undefined
+    ? false
+    : data.roktEmailPositiveEngagement;
 cfg.attributes = {};
+cfg.pageIdentifier = data.pageIdentifier;
+cfg.hashRawEmail = data.hashRawEmail;
 
 // B.1 - Add core attributes
 for (const keyPair of Object.entries(data)) {
-  const keyBeginning = keyPair[0].substring(0,4);
+  const keyBeginning = keyPair[0].substring(0, 4);
   // pull only the core attributes
   // ignore customAttributes data key
   // ignore the Configuration data keys
   // ignore GTM specific data keys
-  if (keyPair[0] != 'customAttributes' & keyBeginning.substring(0,4) !== 'rokt' & keyBeginning.substring(0,3) !== 'gtm') {
+  // ignore non-attribute data keys
+  
+  if (
+    (keyPair[0] != 'customAttributes') &
+    (keyPair[0] != 'pageIdentifier') & 
+    (keyPair[0] != 'hashRawEmail') &
+    (keyBeginning.substring(0, 4) !== 'rokt') &
+    (keyBeginning.substring(0, 3) !== 'gtm')
+  ) {
     cfg.attributes[keyPair[0]] = keyPair[1];
   }
 }
 
 // B.2 Add Custom Attributes
-if (data.customAttributes){
+if (data.customAttributes) {
   for (const customObj of data.customAttributes) {
-  // ignore instances where:
-  // the key value doesn't exist
-  // the key is already used in core attributes 
-    if (customObj.attributeValue != null & cfg.attributes[customObj.attributeName] === undefined ) {
+    // ignore instances where:
+    // the key value doesn't exist
+    // the key is already used in core attributes
+    if (
+      (customObj.attributeValue != null) &
+      (cfg.attributes[customObj.attributeName] === undefined)
+    ) {
       cfg.attributes[customObj.attributeName] = customObj.attributeValue;
     }
-}
+  }
 }
 
 cfg.adsEnabled = false;
 cfg.ecommEnabled = true;
 cfg.accountId = data.roktTagId;
-setInWindow('rokt_config', cfg);
+setInWindow('rokt_config', cfg, true);
 
-// C) Load Wrapper Script
- injectScript('https://apps.rokt.com/store/js/gtm_wrapper.min.js', data.gtmOnSuccess,data.gtmOnFailure,'rokt-launcher');
+// C) Load Wrapper Script (removed caching argument so wrapper runs multiple times)
+injectScript(
+  'https://apps.rokt.com/store/js/gtm_wrapper.min.js',
+  data.gtmOnSuccess,
+  data.gtmOnFailure
+);
 
 
 ___WEB_PERMISSIONS___

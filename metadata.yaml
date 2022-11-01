@@ -15,5 +15,13 @@
 homepage: "https://www.rokt.com"
 documentation: "https://docs.rokt.com/docs/developers/integration-guides/third-party-integrations/google-tag-manager/google-tag-template"
 versions:
+  # Latest version
+  - sha: c1363d3c7cb3b655ee51443a719e32994561472c
+    changeNotes: |2
+      Add advanced option to use pageIdentifier
+      Add advanced option to hash raw email attribute
+      Add support for multiple placements call
+      Remove support for MD5-hashed email attribute
+  # Older versions
   - sha: 6b69359f8adbfa6b97a5d3d179931fb3b5796416
     changeNotes: Initial release.
