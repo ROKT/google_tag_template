@@ -12,16 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-homepage: "https://www.rokt.com"
-documentation: "https://docs.rokt.com/docs/developers/integration-guides/third-party-integrations/google-tag-manager/google-tag-template"
+homepage: 'https://www.rokt.com'
+documentation: 'https://docs.rokt.com/docs/developers/integration-guides/third-party-integrations/google-tag-manager/google-tag-template'
 versions:
   # Latest version
+  - sha: 75114416feafa11e1380e3cbdd51fd1fe1dd640d
+    changeNotes: |2
+      Add Payments Marketplace-specific attributes (i.e. cartItems, siteCountry, siteLanguage).
+      Add support for cookies opt-out (i.e. noFunctional, noTargeting).
+  # Older versions
   - sha: c1363d3c7cb3b655ee51443a719e32994561472c
     changeNotes: |2
       Add advanced option to use pageIdentifier
       Add advanced option to hash raw email attribute
       Add support for multiple placements call
       Remove support for MD5-hashed email attribute
-  # Older versions
   - sha: 6b69359f8adbfa6b97a5d3d179931fb3b5796416
     changeNotes: Initial release.
