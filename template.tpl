@@ -146,6 +146,12 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "TEXT",
+        "name": "country",
+        "displayName": "Country",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
         "name": "clientcustomerid",
         "displayName": "Client customer ID",
         "simpleValueType": true
