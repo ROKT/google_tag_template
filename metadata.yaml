@@ -16,10 +16,14 @@ homepage: 'https://www.rokt.com'
 documentation: 'https://docs.rokt.com/docs/developers/integration-guides/third-party-integrations/google-tag-manager/google-tag-template'
 versions:
   # Latest version
+  - sha: 25d59b6883789ef32bc6569697b725703bd5bd24
+    changeNotes: |2
+      Add Event Listeners attribute to More Integration Options
+      Add Country attribute field back in
+  # Older versions
   - sha: 7973ef444a311d20a2031c14bb802239c2522ded
     changeNotes: |2
       Add Country attribute field
-  # Older versions
   - sha: 75114416feafa11e1380e3cbdd51fd1fe1dd640d
     changeNotes: |2
       Add Payments Marketplace-specific attributes (i.e. cartItems, siteCountry, siteLanguage).

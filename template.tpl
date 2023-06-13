@@ -1,4 +1,12 @@
-﻿___INFO___
+﻿___TERMS_OF_SERVICE___
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
+
+
+___INFO___
 
 {
   "type": "TAG",
@@ -309,6 +317,49 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Disallow Targeting Cookies",
         "simpleValueType": true,
         "help": "Should dynamically reflect your user\u0027s targeting cookie consent state. Accepts a true or false Boolean."
+      },
+      {
+        "type": "SIMPLE_TABLE",
+        "name": "eventListeners",
+        "displayName": "Event Listeners",
+        "simpleTableColumns": [
+          {
+            "defaultValue": "",
+            "displayName": "Custom Name",
+            "name": "customName",
+            "type": "TEXT"
+          },
+          {
+            "defaultValue": "",
+            "displayName": "Rokt Event",
+            "name": "roktEvent",
+            "type": "SELECT",
+            "selectItems": [
+              {
+                "value": "OFFER_ENGAGEMENT",
+                "displayValue": "OFFER_ENGAGEMENT"
+              },
+              {
+                "value": "POSITIVE_ENGAGEMENT",
+                "displayValue": "POSITIVE_ENGAGEMENT"
+              },
+              {
+                "value": "PLACEMENT_CLOSED",
+                "displayValue": "PLACEMENT_CLOSED"
+              },
+              {
+                "value": "PLACEMENT_INTERACTIVE",
+                "displayValue": "PLACEMENT_INTERACTIVE"
+              },
+              {
+                "value": "PLACEMENT_READY",
+                "displayValue": "PLACEMENT_READY"
+              }
+            ]
+          }
+        ],
+        "help": "Add a custom field that maps to a certain Rokt event. When that Rokt event fires, a variable with that custom name will be added to the data layer.",
+        "newRowButtonText": "Add Event Listener"
       }
     ],
     "displayName": "More Integration Options"
@@ -346,6 +397,7 @@ cfg.pageIdentifier = data.pageIdentifier;
 cfg.hashRawEmail = data.hashRawEmail;
 cfg.noFunctional = data.noFunctional;
 cfg.noTargeting = data.noTargeting;
+cfg.eventListeners = data.eventListeners;
 
 // B.1 - Add core attributes
 for (const keyPair of Object.entries(data)) {
@@ -362,6 +414,7 @@ for (const keyPair of Object.entries(data)) {
     (keyPair[0] != 'hashRawEmail') &
     (keyPair[0] != 'noFunctional') &
     (keyPair[0] != 'noTargeting') &
+    (keyPair[0] != 'eventListeners') &
     (keyBeginning.substring(0, 4) !== 'rokt') &
     (keyBeginning.substring(0, 3) !== 'gtm')
   ) {
