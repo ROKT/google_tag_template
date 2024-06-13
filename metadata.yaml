@@ -16,7 +16,7 @@ homepage: 'https://www.rokt.com'
 documentation: 'https://docs.rokt.com/docs/developers/integration-guides/third-party-integrations/google-tag-manager/google-tag-template'
 versions:
   # Latest version
-  - sha: d159333d71d162af4d32cb46c601fb744f450465
+  - sha: a4b90f689e71e97bbfaacc784935d6e7df5f1343
     changeNotes: |2
       Change zipcode core attribute field to billingzipcode
   # Older versions
