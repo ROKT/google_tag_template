@@ -128,8 +128,8 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "TEXT",
-        "name": "zipcode",
-        "displayName": "ZIP or postal code",
+        "name": "billingzipcode",
+        "displayName": "Billing Zipcode (10014 OR 10014-1234)",
         "simpleValueType": true
       },
       {
