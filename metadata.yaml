@@ -16,14 +16,11 @@ homepage: 'https://www.rokt.com'
 documentation: 'https://docs.rokt.com/docs/developers/integration-guides/third-party-integrations/google-tag-manager/google-tag-template'
 versions:
   # Latest version
-  - sha: a4b90f689e71e97bbfaacc784935d6e7df5f1343
-    changeNotes: |2
-      Change zipcode core attribute field to billingzipcode
-  # Older versions
   - sha: 25d59b6883789ef32bc6569697b725703bd5bd24
     changeNotes: |2
       Add Event Listeners attribute to More Integration Options
       Add Country attribute field back in
+  # Older versions
   - sha: 7973ef444a311d20a2031c14bb802239c2522ded
     changeNotes: |2
       Add Country attribute field

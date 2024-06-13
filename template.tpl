@@ -11,7 +11,7 @@ ___INFO___
 {
   "type": "TAG",
   "id": "cvt_temp_public_id",
-  "version": "1.4",
+  "version": 1,
   "securityGroups": [],
   "displayName": "Rokt Tag Integration",
   "categories": [
@@ -128,8 +128,8 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "TEXT",
-        "name": "billingzipcode",
-        "displayName": "Billing Zipcode (10014 OR 10014-1234)",
+        "name": "zipcode",
+        "displayName": "ZIP or postal code",
         "simpleValueType": true
       },
       {
