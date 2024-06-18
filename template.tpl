@@ -11,7 +11,7 @@ ___INFO___
 {
   "type": "TAG",
   "id": "cvt_temp_public_id",
-  "version": 1,
+  "version": "1.5.0",
   "securityGroups": [],
   "displayName": "Rokt Tag Integration",
   "categories": [
@@ -128,8 +128,8 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "TEXT",
-        "name": "zipcode",
-        "displayName": "ZIP or postal code",
+        "name": "billingzipcode",
+        "displayName": "Billing zipcode (e.g. 10014 OR 10014-1234)",
         "simpleValueType": true
       },
       {
@@ -244,6 +244,12 @@ ___TEMPLATE_PARAMETERS___
         "type": "TEXT",
         "name": "cartItems",
         "displayName": "Cart Items",
+        "simpleValueType": true
+      },
+      {
+        "type": "TEXT",
+        "name": "zipcode",
+        "displayName": "ZIP or postal code",
         "simpleValueType": true
       }
     ]
